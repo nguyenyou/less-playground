@@ -1,50 +1,46 @@
 "use client"
 
-import { useState, useEffect, useCallback, useRef } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Switch } from "@/components/ui/switch"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Separator } from "@/components/ui/separator"
+import { Switch } from "@/components/ui/switch"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { 
-  Copy, 
-  Play, 
-  RotateCcw, 
-  AlertCircle, 
-  Download, 
-  Upload, 
-  Settings, 
-  Palette, 
-  Code2, 
-  Eye, 
-  Zap,
-  Moon,
-  Sun,
-  Monitor,
-  Maximize2,
-  Minimize2,
-  Share2,
+import {
+  AlertCircle,
   BookOpen,
-  Sparkles,
+  Code2,
+  Copy,
+  Download,
+  Eye,
   FileText,
   Layers,
-  Terminal
+  Maximize2,
+  Minimize2,
+  Moon,
+  Palette,
+  Play,
+  RotateCcw,
+  Share2,
+  Sparkles,
+  Sun,
+  Terminal,
+  Zap
 } from "lucide-react"
-import { toast } from "sonner"
 import { useTheme } from "next-themes"
-import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable"
+import { useCallback, useEffect, useRef, useState } from "react"
+import { toast } from "sonner"
 
 // CodeMirror imports
-import { EditorView, basicSetup } from "codemirror"
+import { css } from "@codemirror/lang-css"
 import { EditorState } from "@codemirror/state"
 import { oneDark } from "@codemirror/theme-one-dark"
-import { css } from "@codemirror/lang-css"
+import { EditorView, basicSetup } from "codemirror"
 
 const defaultLessCode = `// 🎨 LESS Playground - Unleash Your Creativity!
 @primary: #6366f1;
@@ -502,7 +498,7 @@ export default function LessPlayground() {
   const [activeTab, setActiveTab] = useState("editor")
   const [fontSize, setFontSize] = useState(14)
   const [autoCompile, setAutoCompile] = useState(true)
-  const [showLineNumbers, setShowLineNumbers] = useState(true)
+  const [showLineNumbers] = useState(true)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const { theme, setTheme } = useTheme()
 
